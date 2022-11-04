@@ -8,10 +8,11 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract ERC721Contract is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-
     constructor(string memory _name, string memory _symbol)
         ERC721(_name, _symbol)
     {}
+    
+    event NFTMinted(address account, uint256 tokenId);
 
     /**
      * @dev creates mintNewNFT function that takes @param tokenURI
@@ -24,7 +25,9 @@ contract ERC721Contract is ERC721URIStorage {
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
 
+        emit NFTMinted (msg.sender, newItemId);
         return newItemId;
+        
     }
 
     /**
