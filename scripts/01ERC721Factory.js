@@ -30,21 +30,20 @@ async function main() {
 
     // calling mintNFT function
 
-    // console.log("---------- calling mintNFT function ----------")
-    // owner = txReceipt.from
-    // let newNFT = await erc721FactoryInstance
-    //     .connect(owner)
-    //     .mintNFT(nftContract, "ipfs://xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/")
+    console.log("---------- calling mintNFT function ----------")
+    let newNFT = await erc721FactoryInstance
+        .connect(owner)
+        .mintNFT(nftContract, "ipfs://xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/")
 
-    // const txReceipt1 = await newNFT.wait()
-    // console.log(txReceipt1)
+    const txReceipt1 = await newNFT.wait()
+    console.log(txReceipt1)
 
     // list NFT collection for owner
-    console.log("---------- list NFT collection for owner ----------")
-    let listNFT = await erc721FactoryInstance.listNFTsForOwner(signer1)
+    // console.log("---------- list NFT collection for owner ----------")
+    // let listNFT = await erc721FactoryInstance.listNFTsForOwner(signer1)
     
-    const txReceipt2 = await listNFT.wait()
-    console.log(txReceipt2)
+    // const txReceipt2 = await listNFT.wait()
+    // console.log(txReceipt2)
 }
 main()
     .then(() => process.exit(0))
