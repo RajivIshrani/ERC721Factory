@@ -13,19 +13,20 @@ async function main() {
 
     contractAddress = erc721FactoryInstance.address
     console.log("ERC721Factory Address", contractAddress)
-
+    //use contract abi to load instance
+    // use sendTransaction function using ethers
+    // need to use interface instead of abi
     // calling deployNFTContract function
 
     console.log("\n---------- calling deployNFTContract function  ----------\n")
     const [owner, signer1, signer2] = await ethers.getSigners()
-    let nftAddress = await erc721FactoryInstance.deployNFTContract(
-        _name,
-        _symbol
-    )
+    let nftAddress = await erc721FactoryInstance
+        .connect(owner)
+        .deployNFTContract(_name, _symbol)
     const txReceipt = await nftAddress.wait()
     console.log(txReceipt)
 
-    const nftContract = txReceipt.events[0].address
+    const nftContract = txReceipt.events[0].args.nftContract
 
     console.log("\nDeployed NFT Contract Address\n", nftContract)
 
@@ -35,7 +36,7 @@ async function main() {
 
     console.log("\n---------- calling mintNFT function ----------\n")
     let newNFT = await erc721FactoryInstance
-        .connect()
+        .connect(owner)
         .mintNFT(nftContract, "ipfs://xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/")
 
     const txReceipt1 = await newNFT.wait()
