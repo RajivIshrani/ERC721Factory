@@ -23,8 +23,8 @@ const main = async () => {
     contractAddress = erc721FactoryInstance.address
     console.log(`\nERC721Factory Address --> ${contractAddress}\n`)
 
+    // encoding function here
     let interface = new ethers.utils.Interface(abi.abi)
-
     const dataEncode = interface.encodeFunctionData("deployNFTContract", ["TOKEN", 'TKN'])
 
     const nonce = await provider.getTransactionCount(account1.address)
