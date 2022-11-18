@@ -30,10 +30,7 @@ describe("ERC721Factory", () => {
     it("Should mint NFT for a contract", async () => {
         let newNFT = await contract
             .connect(account)
-            .mintNFT(
-                nftContract,
-                "https://gateway.pinata.cloud/ipfs/QmYJ8A4js3Pcqgp3HkCeoj2BUuen5tD7o8Z4R2k46eLM8b"
-            )
+            .mintNFT(nftContract, "ipfs://xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/")
 
         const txReceipt1 = await newNFT.wait()
         console.log(txReceipt1)
