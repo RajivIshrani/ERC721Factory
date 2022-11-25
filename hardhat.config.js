@@ -8,6 +8,8 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY
+const BSC_API_KEY = process.env.BSC_API_KEY
+const BSC_RPC_URL = process.env.BSC_RPC_URL
 
 module.exports = {
     solidity: "0.8.17",
@@ -28,12 +30,20 @@ module.exports = {
             chainId: 80001,
             blockConfirmations: 6,
         },
+
+        bsc: {
+            url: BSC_RPC_URL,
+            accounts: [PRIVATE_KEY],
+            chainId: 56,
+            blockConfirmations: 6,
+        },
     },
     etherscan: {
         // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
         apiKey: {
             goerli: ETHERSCAN_API_KEY,
             polygonMumbai: POLYGONSCAN_API_KEY,
+            bsc: BSC_API_KEY
         },
     },
     mocha: {
